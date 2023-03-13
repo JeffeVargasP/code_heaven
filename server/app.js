@@ -23,7 +23,9 @@ app.use((req, res, next) => {
 
 app.get("/status", (req, res, next) => {
     const secretKey = process.env.SECRET_KEY;
-    const providedKey = req.query.key;
+    const providedKey = req.headers.authorization;
+
+    console.log(providedKey)
 
     if (providedKey === secretKey) {
         res.status(200).send("OK!")
